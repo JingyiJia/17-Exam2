@@ -3,8 +3,8 @@ Exam 2, problem 2.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Jingyi.Jia.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import math
 import time
@@ -13,7 +13,7 @@ import testing_helper
 
 
 ###############################################################################
-# TODO: 2.  READ the   Point   class defined below.
+# Done: 2.  READ the   Point   class defined below.
 #  Note especially its methods:
 #    clone
 #    distance_from
@@ -75,7 +75,7 @@ class Point(object):
 
 
 ###############################################################################
-# The  main  function and the TODOs for you are after this:
+# The  main  function and the DOs for you are after this:
 ###############################################################################
 def main():
     """ Calls the   TEST   functions in this module. """
@@ -83,9 +83,9 @@ def main():
     # Uncomment the following calls to the testing functions one at a time
     # as you work the problems.
     # -------------------------------------------------------------------------
-    print()
-    print('Un-comment the calls in MAIN one by one')
-    print(' to run the testing code as you complete the TODOs.')
+    # print()
+    # print('Un-comment the calls in MAIN one by one')
+    # print(' to run the testing code as you complete the toDOs.')
 
     # run_test_init()
     # run_test_area()
@@ -138,7 +138,7 @@ class Triangle(object):
           :type c: Point
         """
         # ---------------------------------------------------------------------
-        # TODO: 2.
+        # Done: 2.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -146,6 +146,10 @@ class Triangle(object):
         #        The tests are already written (below).
         #        They include the Example in the above doc-string.
         # ---------------------------------------------------------------------
+
+        self.a = a.clone()
+        self.b = b.clone()
+        self.c = c.clone()
 
     def area(self):
         """
@@ -178,7 +182,7 @@ class Triangle(object):
           :rtype: float
         """
         # ---------------------------------------------------------------------
-        # TODO: 3.
+        # Done: 3.
         #   a. READ the above specification, including the Example AND HINT!
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -186,6 +190,11 @@ class Triangle(object):
         #        The tests are already written (below).
         #        They include the Example in the above doc-string.
         # ---------------------------------------------------------------------
+        L1 = math.sqrt((self.a.x - self.b.x) ** 2 + (self.a.y - self.b.y) ** 2)
+        L2 = math.sqrt((self.a.x - self.c.x) ** 2 + (self.a.y - self.c.y) ** 2)
+        L3 = math.sqrt((self.b.x - self.c.x) ** 2 + (self.b.y - self.c.y) ** 2)
+        area = 1/2 * (L1+L2+L3)
+        return area
 
     def bigger_triangle(self, triangle2):
         """
@@ -201,7 +210,7 @@ class Triangle(object):
           :rtype: bool
         """
         # ---------------------------------------------------------------------
-        # TODO 4:
+        # Done 4:
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -209,6 +218,10 @@ class Triangle(object):
         #        The tests are already written (below).
         #        They include the Example in the above doc-string.
         # ---------------------------------------------------------------------
+        if self.area() > triangle2():
+            return True
+        else:
+            return False
 
     def shrink_or_expand(self, f):
         """
@@ -224,7 +237,7 @@ class Triangle(object):
            :type: f: float
         """
         # ---------------------------------------------------------------------
-        # TODO 8:
+        # Done 8:
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -232,6 +245,15 @@ class Triangle(object):
         #        The tests are already written (below).
         #        They include the Example in the above doc-string.
         # ---------------------------------------------------------------------
+        p1 = Point(f*self.a.x, f*self.a.y)
+        p2 = Point(f*self.b.x,f*self.b.y)
+        p3 = Point(f*self.c.x, f*self.c.y)
+        L1 = math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2)
+        L2 = math.sqrt((p1.x - p3.x) ** 2 + (p1.x - p3.y) ** 2)
+        L3 = math.sqrt((p2.x - p3.x) ** 2 + (p2.y - p3.y) ** 2)
+        area = 1 / 2 * (L1 + L2 + L3)
+        return area
+
 
     def return_doubled_triangle(self):
         """
@@ -247,7 +269,7 @@ class Triangle(object):
           :rtype: Triangle:
         """
         # -------------------------------------------------------------------------
-        # TODO: 9
+        # Done: 9
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -255,8 +277,16 @@ class Triangle(object):
         #        The tests are already written (below).
         #        They include the Example in the above doc-string.
         # -------------------------------------------------------------------------
+        p1 = Point(2*self.a.x, 2 * self.a.y)
+        p2 = Point(2*self.b.x, 2 * self.b.y)
+        p3 = Point(2*self.c.x, 2*self.c.y)
+        L1 = math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2)
+        L2 = math.sqrt((p1.x - p3.x) ** 2 + (p1.x - p3.y) ** 2)
+        L3 = math.sqrt((p2.x - p3.x) ** 2 + (p2.y - p3.y) ** 2)
+        area = 1 / 2 * (L1 + L2 + L3)
+        return area
 
-    def get_largest_area(self):
+def get_largest_area(self):
         """
         What comes in:
           -- self
@@ -271,7 +301,7 @@ class Triangle(object):
           :rtype: Float:
         """
         # ---------------------------------------------------------------------
-        # TODO: 9
+        # Done: 9
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -279,6 +309,10 @@ class Triangle(object):
         #        The tests are already written (below).
         #        They include the Example in the above doc-string.
         # ---------------------------------------------------------------------
+        if self.shrink_or_expand()>self.return_doubled_triangle():
+            return self.shrink_or_expand()
+        else:
+            return self.return_doubled_triangle()
 
 
 ###############################################################################
